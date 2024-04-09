@@ -1,0 +1,28 @@
+<!-- page2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 2</title>
+</head>
+<body>
+    <h1>Page 2</h1>
+    <script>
+        // Function to get the value from the URL
+        function getValueFromURL() {
+            // Get the query parameters from the URL
+            var queryParams = new URLSearchParams(window.location.search);
+
+            // Get the value parameter
+            var valueReceived = queryParams.get('value');
+
+            // Display the received value
+            alert('Received value: ' + valueReceived);
+        }
+
+        // Call the function on page load
+        getValueFromURL();
+    </script>
+</body>
+</html>

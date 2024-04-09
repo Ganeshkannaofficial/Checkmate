@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .high {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            background-image: url('gradient.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            width: 0px;
+            opacity: 0;
+            display: none;
+            border-radius: 10px;
+            background-color: transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .def{
+            height: 400px;
+            width: 300px;
+        }
+
+        .clickbuttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            justify-content: center;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+        }
+        .pre{
+            
+            height: 150px;
+            width: 400px;
+            background-color: transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color:rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-button{
+            height: 40%;
+            width: 40%;
+            font-size:200%;
+            text-align: center;
+        }
+
+        .shrink{
+            
+            animation:shk 1s ease-in 0s forwards;
+        }
+
+        @keyframes shk {
+            100%{
+                opacity: 0;
+                display: none;
+                /* background-color:red; */
+            }
+        }
+
+        .exp{
+            
+            animation:exp 1.2s ease-in 1s forwards;
+        }
+
+        @keyframes exp {
+            0%{
+                opacity: 0;
+                width: 300px;
+            }
+            100%{
+                opacity: 1;
+                display: flex;
+                width: 300px;
+                /* background-color:red; */
+            }
+        }
+
+        button:hover {
+            background-color: grey;
+        }
+        .none{
+            display: none;
+        }
+
+        .add-b,.add-t{
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color:rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            display: block;
+            block-size: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="high">
+        <div class="pre ">
+                
+            <button type="button" onclick="addbutton()" class="add-button">Add</button>
+            
+        </div>
+        <div class="main none">
+            <div class="def ">
+            <div class="button-op"></div>
+                    <div class="clickbuttons">
+
+                    </div>
+      </div>
+        </div>
+    </div>
+
+    <script>
+        function addbutton(){
+            document.querySelector(".pre").classList.add('shrink');
+            document.querySelector(".main").classList.remove('none');
+            document.querySelector(".main").classList.add('exp');
+            // document.querySelector(".def").classList.remove('none');
+         document.querySelector('.button-op').innerHTML=`<form>ENTER SUBJECTS<input type="text" class="add-b"/>
+             ENTER TOTAL HOURS<input type="text" class="add-t"/>
+             <button type="button" onclick="createbutton()">OK</button>
+             </form>`;
+        }
+        let value =[];
+        let i=0;
+        let sub,totalhours;
+        function createbutton(){
+         sub=document.querySelector('.add-b').value;
+         totalhours=document.querySelector('.add-t').value;
+                             value.push({
+                         sub,totalhours
+                     });
+                 
+                     // var btn = document.createElement("BUTTON"); 
+                     // btn.appendChild(value[i]);
+                     appendbutton();
+             console.log(value);
+         i++;
+        }
+        function appendbutton(){
+             let subject =value[value.length-1]
+                let but=document.createElement("button")
+                let subnam=document.createTextNode(subject.sub)
+                but.appendChild(subnam)
+                document.querySelector('.button-op').appendChild(but)
+                
+             
+        }
+
+ </script>
+</body>
+</html>

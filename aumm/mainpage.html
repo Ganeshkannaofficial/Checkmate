@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .high {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            background-image: url('gradient.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            height: 400px;
+            width: 300px;
+            border-radius: 10px;
+            background-color: transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .clickbuttons {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            justify-content: center;
+            text-align: center;
+            text-transform: capitalize;
+            width: 100%;
+            overflow-y: scroll;
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: transparent transparent; /* For Firefox */
+        }
+
+        /* Webkit (Chrome, Safari, newer versions of Opera) */
+        .clickbuttons::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        /* Webkit (Chrome, Safari, newer versions of Opera) */
+        .clickbuttons::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 3px;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color:rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: grey;
+        }
+        .add-b,.add-t{
+            padding: 10px;
+            padding-left: 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color:rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            display: block;
+            block-size: auto;
+        }
+        .add-ok{
+            justify-content: center;
+        }
+        .new-but{
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            padding: 10px;
+            width:100%;
+            align-items: center;
+        }
+        .input-box{
+            height: 200px;
+            width: 300px;
+            border-radius: 10px;
+            background-color: transparent;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+        .none{
+               display: none;
+        }
+        .reset-but{
+         margin-left: 150px;
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="high">
+        
+        <div class="main">
+            <div class="upper-but">
+            <button type="add-button" onclick="addbutton()" class="add-button">Add</button>
+            <button class="reset-but" onclick="resetstorage()">RESET</button>   </div>     
+            <h1 class="heading">SUBJECTS</h1>
+            <div class="button-op">
+                <div class="input-box none" >
+                    <form><label for="subjects">ENTER SUBJECTS</label>
+                        <input type="text" class="add-b" name="subjects" required >
+                        <label for="HOURs">ENTER TOTAL HOURS</label><input type="text" class="add-t" name="hours" required ><br>
+                    <button type="button" onclick="createbutton()" class="add-ok">OK</button>
+                   
+                </form></div>
+            </div>
+            
+            <div class="clickbuttons">
+               <script>
+                   
+                   function addbutton(){
+                    document.querySelector('.clickbuttons').classList.add("none");
+                    document.querySelector('.input-box').classList.remove("none");
+                   }
+                   let value =[];
+                   let i=0;
+                   let sub,totalhours;
+                   function createbutton(){
+                    document.querySelector('.clickbuttons').classList.remove("none");
+                    document.querySelector('.input-box').classList.add("none");
+                    sub=document.querySelector('.add-b').value;
+                    totalhours=document.querySelector('.add-t').value;
+                                        value.push({
+                                    sub,totalhours
+                                });
+                                local();
+                        appendbutton();
+                        console.log(value);
+                    i++;
+                    document.querySelector('.add-b').value=''
+                    document.querySelector('.add-t').value=''
+                   }
+                   function appendbutton(){
+                        let subject =value[value.length-1]
+                           let but=document.createElement("button")
+                           let subnam=document.createTextNode(subject.sub)
+                           but.appendChild(subnam)
+                           document.querySelector('.clickbuttons').appendChild(but)
+                           but.classList.add('new-but');
+                           but.addEventListener("click", hello);
+                   }
+                  function hello(){
+                 window.location.href = 'template.html';
+                  }
+                  
+                  function local(){
+                 let localstorage=JSON.stringify(value);
+                 console.log(localstorage);
+                 localStorage.setItem('sub-datas',localstorage);
+                 
+        }
+                 let check=localStorage.getItem('sub-datas');
+                 if(check!=null){
+                       value=JSON.parse(check);
+                       value.forEach(subject => {
+                        let but=document.createElement("button")
+                           let subnam=document.createTextNode(subject.sub)
+                           but.appendChild(subnam)
+                           document.querySelector('.clickbuttons').appendChild(but)
+                           but.classList.add('new-but');
+                           but.addEventListener("click", hello);
+                       });
+                 }
+
+
+                 function resetstorage(){
+                    value=[];
+                    localStorage.clear();
+                    console.log(value)
+                    let buttonsContainer = document.querySelector('.clickbuttons');
+                    while (buttonsContainer.firstChild) {
+                              buttonsContainer.removeChild(buttonsContainer.firstChild);
+                    }
+                            buttonsContainer.classList.add("none");
+
+                                 console.log(value);
+                 }
+            </script>
+            </div>
+            <div>
+               
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

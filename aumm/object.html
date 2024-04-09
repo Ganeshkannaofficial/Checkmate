@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=let, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="">
+
+        <input type="text" id="nam"placeholder="enter the subject...">
+        <button onclick="add()" type="button">ADD</button>
+    </form>
+
+
+    <script>
+    let list=[];
+    let total=80,hour=90;
+        function add(){
+            let nam=document.getElementById("nam");
+            let cour=nam.value;
+
+            list.push(
+                {
+                    name:cour,
+                    hours:10
+                }
+            )
+            console.log(list);
+        }
+    console.log(list);
+   
+    // console.log(totalist);
+    // let 
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- page1.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body>
+    <h1>Page 1</h1>
+     <header class="pro-header">PERCENTAGE CALC</header>
+    <aside class="pro-aside">
+        <form >
+        <label for="no-subjects">Enter the total no of subjects</label>
+        <input type="number" id="total-sub" name="no-subjects" pattern="[0-9]" required/>
+        <button  onclick="sendValue()">OK</button>
+    <label for="inputValue">Enter a value:</label>
+    <input type="text" id="inputValue">
+    <button onclick="sendValue()">Send Value</button>
+
+    <script>
+        function sendValue() {
+            // Get the input value
+            var valueToSend = document.getElementById('inputValue').value;
+
+            // Redirect to page2.html with the value as a query parameter
+            window.location.href = 'page2.html?value=' + encodeURIComponent(valueToSend);
+        }
+    </script>
+</body>
+</html>

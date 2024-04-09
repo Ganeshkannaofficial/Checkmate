@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0; /* Added a background color */
+        }
+        .add-button {
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color:rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .high {
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100vw;
+            background-image: url('gradient.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            height: auto; /* Changed height to auto */
+            width: 300px;
+            border-radius: 10px;
+            background-color: #ffffff; /* Changed to white */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px; /* Added margin bottom */
+        }
+
+        .clickbuttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-transform: capitalize;
+            width: 100%; /* Added width */
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        button.add-b, button.add-t { /* Added button prefix for specificity */
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            margin: 5px 0; /* Added margin */
+            width: 100%; /* Added width */
+        }
+
+        button.add-b:hover, button.add-t:hover { /* Added button prefix for specificity */
+            background-color: grey;
+        }
+
+        .input-box {
+            width: 100%; /* Added width */
+            border-radius: 10px;
+            background-color: #ffffff; /* Changed to white */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            padding: 20px; /* Added padding */
+            margin-top: 20px; /* Added margin top */
+        }
+
+        .new-but {
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.562);
+            color: white;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            margin-top: 5px; /* Added margin top */
+            width: 100%; /* Added width */
+            text-align: center; /* Center align text */
+        }
+
+        .new-but:hover {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="high">
+        
+        <div class="main">
+            <button type="add-button" onclick="addbutton()" class="add-button">Add</button>
+            <h1 class="heading">SUBJECTS</h1>
+            <div class="button-op"></div>
+            
+            <div class="clickbuttons">
+               <script>
+                   function addbutton(){
+                    document.querySelector('.button-op').innerHTML=`<div class="input-box">
+                        <form>ENTER SUBJECTS<input type="text" class="add-b" required/>
+                        ENTER TOTAL HOURS<input type="text" class="add-t" required/><br>
+                        <button type="button" onclick="createbutton()" class="add-ok">OK</button>
+                        </form></div>`;
+                   }
+                   let value =[];
+                   let i=0;
+                   let sub,totalhours;
+                   function createbutton(){
+                    
+                    sub=document.querySelector('.add-b').value;
+                    totalhours=document.querySelector('.add-t').value;
+                                        value.push({
+                                    sub,totalhours
+                                });
+                    document.querySelector('.input-box').innerHTML=''
+                        appendbutton();
+                        console.log(value);
+                    i++;
+                   }
+                   function appendbutton(){
+                        let subject =value[value.length-1]
+                           let but=document.createElement("button")
+                           let subnam=document.createTextNode(subject.sub)
+                           but.appendChild(subnam)
+                           document.querySelector('.clickbuttons').appendChild(but)
+                           but.classList.add('new-but');
+                   }
+                   
+            </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
